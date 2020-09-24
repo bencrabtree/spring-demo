@@ -76,20 +76,6 @@
 				<configuration>
 					<addResources>true</addResources>
 				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.springframework</groupId>
-						<artifactId>springloaded</artifactId>
-						<version>1.2.8.RELEASE</version>
-					</dependency>
-				</dependencies>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
@@ -126,14 +112,20 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>npm run build</id>
+						<id>webpack-build</id>
 						<goals>
-							<goal>npm</goal>
+							<goal>webpack</goal>
 						</goals>
-						<configuration>
-							<arguments>run build</arguments>
-						</configuration>
 					</execution>
+<!--					<execution>-->
+<!--						<id>webpack watch</id>-->
+<!--						<goals>-->
+<!--							<goal>npm</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<arguments>run watch</arguments>-->
+<!--						</configuration>-->
+<!--					</execution>-->
 				</executions>
 			</plugin>
 			<plugin>
@@ -144,10 +136,10 @@
 						<configuration>
 							<target>
 								<copy todir="${project.build.directory}/classes/static">
-									<fileset dir="${project.basedir}/src/webapp/build/static" />
+									<fileset dir="${project.basedir}/src/webapp/public/js" />
 								</copy>
 								<copy todir="${project.build.directory}/classes/static">
-									<fileset dir="${project.basedir}/src/webapp/build" />
+									<fileset dir="${project.basedir}/src/webapp/public" />
 								</copy>
 							</target>
 						</configuration>
